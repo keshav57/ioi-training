@@ -1,0 +1,16 @@
+The maximum independent set (in this graph) can be found by the following algorithm:
+While there is atleast one vertex in the graph, select a vertex v with outdegree 0 and add it to the set, then remove all the parents of v from the graph.
+
+T = the maximum independent set
+S = the independet set found by the algorithm
+(T and S are sorted in decreasing order, which will also be the topological ordering)
+
+Proof that size of S >= size of T.
+
+Suppose the first i-1 vertices in S and T are the same and v is the ith vertex in T. Then the remaining graph(where all the remaning vertices don't have an edge to the first i-1 vertices) will be the same.
+
+If the size of S = i-1, that means there are no more vertices in the graph and T cannot possibly contain any more vertices.
+If the outdegree of v is 0, then after adding the ith vertex to S only its parents will be removed and that can never affect v. So v will be added somewhere in the set S, we can delete vertices starting from the ith vertex until we reach v.
+Otherwise, as all the vertices with outdegree 0 will be added somewhere in S, so it is sufficient to replace v with a vertex with outdegree 0.
+
+If we replace v with one of its children c, then that won't affect the first i-1 vertices (if there was an edge from c to one of them then c wouldn't be in the remaining graph). If there is a vertex p in the remaining T such that p is a parent of c (c cannot be a parent of v because v>c) then there had to be an edge between p and v (according to the problem) so p cannot possibly be in the set T. So we can keep on replacing v with one of its children until it has no children left (the outdegree is 0).

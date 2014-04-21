@@ -1,0 +1,80 @@
+All the cows having U > D should be sent in decreasing order of D. So if there are two cows i,j such that D[i] < D[j] , by sending i before j, the time taken will be atleast as much as 
+the time taken while sending j before i.
+
+U[i] > D[i]
+U[j] > D[j]
+U[j] > D[j] > D[i]
+
+If the order is i,j
+k is the cow that goes before i.
+rD[x] = the time when cow labeled x reached down, rU[x] = the time when cow labeled x reached up.
+U[x] is the time x takes to climb the mountain and D[x] is the time x takes to descend the mountain
+
+Q = rD[k]-rU[k]
+
+x0 = max(0,Q-U[i])
+x1 = max(0,Q-U[j])
+
+rU[i] = rU[k] + U[i]
+rD[i] = rU[k] + U[i] + x0 + D[i]
+rU[j] = rU[k] + U[i] + U[j]
+
+rD[j] = X = max(rU[j]+D[j],rD[i]+D[j])
+= max (
+	rU[k] + U[i] + U[j] + D[j], 			(a)
+	rU[k] + U[i] + x0 + D[i] + D[j]			(b)
+)
+
+Similarly if the order is j,i
+
+rD[i] = Y = max(rU[i]+D[i],rD[j]+D[i])
+= max (
+	rU[k] + U[j] + U[i] + D[i],			(c)
+	rU[k] + U[j] + x1 + D[j] + D[i]			(d)
+)
+
+It is sufficient to prove X >(=) Y
+____________________________________________
+
+If a > b if U[j] > x0 + D[i]
+
+a > c because D[j] > D[i].
+
+a > d if U[i] > D[i] + x1
+
+if x1 is 0, it is true otherwise if x1 > 0:
+then the following has to be true
+
+U[i] > D[i] + x1
+U[i] + U[j] > D[i] + x1 + U[j]			
+U[i] + U[j] > D[i] + Q				
+U[i] + x0 + U[j] > D[i] + Q + x0		
+max(Q,U[i]) + U[j] > D[i] + x0 + Q
+
+because U[j] > D[i] + x0, and max(Q,U[i]) >= Q, it is true.
+_____________________________________________________________________
+
+If b > a then
+
+1. x0 + D[i] > U[j]
+2. x0 > 0 (because U[j] > D[i])
+3. U[i] > D[i]
+4. U[j] > D[j] > D[i]
+
+b > c if: x0+D[j] > U[j]
+
+x0 + D[i] > U[j] and D[j] > D[i]
+so, x0 + D[j] > U[j] and b > c.
+
+b > d if: U[i] + x0 >(=) U[j] + x1
+
+x0 cannot be 0, if both x0,x1 > 0 then U[i] + x0 = U[j] + x1 = Q.
+
+If x1 is 0 and x0 > 0:
+
+x0 + D[i] > U[j] and U[i] > D[i]
+x0 + U[i] > U[j]
+
+because x1 is 0, U[j] > Q and U[i] + x0 = Q, which cannot be possible, so x1 cannot be 0 if x0 is > 0.
+
+And so, it is proved that X is always >(=) Y.

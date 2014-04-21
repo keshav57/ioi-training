@@ -1,0 +1,27 @@
+Subtask 1:
+Initially turn everything on, for every element, if turning it off will cause the function to return false then the element is included in the function.
+Worst case: excactly N calls, i.e 300 calls.
+
+Subtask 2:
+Initially turn every on, group sqrt(N) contigious elements together, we will
+have sqrt(N) such groups, turn every group off, if the function returns false then mark the group as seleted, in the end there will be atmost K selected groups, use the previous algorithm for them.
+Worst case:
+1. sqrt(N) calls to find the selected groups: sqrt(900) = 30
+2. Atmost sqrt(N)*K selected elements and calls = 30*9 = 270 
+3. Total 270+30 = exactly 300 calls.
+
+Subtask 3-4:
+Binary search for each of the K elements.
+Total Call: K*log(N)
+Worst Case:
+K = 20, N = 10000
+K * log(N) = 20*10 = 200 calls
+
+Subtask 5:
+
+Divide them into K equal sized groups and binary search on each group.
+
+Worst Case:
+K elements: 10? 250
+After every search check if the group still contains any.
+25+25  = 50 total : 250+50 exactly 300?

@@ -1,0 +1,46 @@
+/*
+ Created By: Malvika Joshi
+ Problem: Combination Lock
+ Link: http://www.usaco.org/index.php?page=viewproblem2&cpid=340
+*/
+
+#include <stdio.h>
+#include <stdlib.h>
+
+int N;
+inline int tol(int a, int b){
+    int d1,d2;
+    d1 = abs(a-b);
+    d2 = abs(N-d1);
+    return ((d1 <= 2) || (d2 <= 2));
+}
+
+int main(){
+    int m1,m2,m3,f1,f2,f3,i,j,k;
+    int ct = 0;
+
+
+    scanf("%d",&N);
+
+    scanf("%d%d%d",&f1,&f2,&f3);
+    scanf("%d%d%d",&m1,&m2,&m3);
+
+    for(i = 1; i <= N; ++i){
+        for(j = 1; j <= N; ++j){
+            for(k = 1; k <= N; ++k){
+
+                if(tol(f1,i) && tol(f2,j) && tol(f3,k)){
+                    ++ct;
+                    continue;
+                }
+                if(tol(m1,i) && tol(m2,j) && tol(m3,k)){
+                    ++ct;
+                }
+            }
+        }
+    }
+
+    printf("%d\n",ct);
+
+    return 0;
+}

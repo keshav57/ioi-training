@@ -1,0 +1,119 @@
+If there are two cows i,j where U[i] > D[i] and D[j] > U[j] and i comes before j in the ordering, the total time taken will be atleast as much as it will be by swapping i and j.
+
+U[i] > D[i]
+D[j] > U[j]
+
+k is the cow that goes before i.
+rD[x] = the time when cow labeled x reached down, rU[x] = the time when cow labeled x reached up.
+U[x] is the time x takes to climb the mountain and D[x] is the time x takes to descend the mountain
+
+
+Q = rD[k]-rU[k]
+
+x0 = max(0,Q-U[i])
+x1 = max(0,Q-U[j])
+
+
+If i goes just before j, then:
+
+rU[i] = rU[k] + U[i]
+rD[i] = rU[k] + U[i] + x0 + D[i]
+
+rU[j] = rU[k] + U[i] + U[j]
+rD[j] = X
+X = max(a,b)
+
+where a = rU[j] + D[j] and b = rD[i] + D[j]
+
+= max( rU[k] + U[i] + U[j] + D[j],
+       rU[k] + U[i] + x0 + D[i] + D[j] )
+
+Similarly if j goes before i, then
+
+rD[i] = Y
+
+Y = max(c,d)
+
+c = rU[i] + D[i] and d = rD[j] + D[i]
+
+= max( rU[k] + U[j] + U[i] + D[i],
+       rU[k] + U[j] + x1 + D[j] + D[i] )
+___________________________________________
+
+If a > b, then,
+
+1. U[j] > x0 + D[i]
+2. D[j] > U[j] > x0 + D[i]
+3. D[j] > U[j] > D[i]
+4. U[i] > D[i]
+
+Need to prove that X > Y when a > b, (a > c and a > d)
+
+a > c because rU[k],U[j],U[i] will cancel out leaving D[j] in a, and D[i] in c.
+As D[j] > D[i], a > c.
+
+If a > d then it is proved that X > Y if a > b
+If a < d, it means, U[i] < x1 + D[i]
+then x1 cannot be zero because U[i] > D[i].
+
+it is known that, U[j] > x0 + D[i]
+so,
+5. U[j] + U[i] > x0 + U[i] + D[i]
+
+x0 can either be zero or greater than 0
+suppose x0 > 0 then U[i] + x0 = Q and as x1 + U[j] = Q.
+U[j] + U[i] > Q + D[i] (from 5.)
+
+hence, U[i] < x1 + D[i] cannot be true, because it is the same as claiming, U[i] + U[j] < Q + D[i]
+
+
+suppose x0 is 0, then U[i] > Q,
+then U[i] + U[j] < Q + D[i] cannot be true because, 
+U[i] > Q and U[j] > D[i].
+
+It is proved that if a > b then X > Y
+
+_______________________________________________
+
+If b > a then,
+
+1. x0 + D[i] > U[j]
+2. U[i] > D[i]
+3. D[j] > U[j]
+
+Need to prove that X > Y when b > a, (b > c and b > d)
+
+b > c because everything cancels out leaving D[j] + x0 in b and U[j] in c.
+As D[j] > U[j], D[j] + x0 > U[j] and so, b > c.
+
+
+To prove b > d, it is sufficient to prove U[i] + x0 > U[j] + x1 (everything else cancels out)
+
+x0 and x1 can either be 0 or >0
+
+Suppose x0 and x1 are both >0, then U[i] + x0 = U[j] + x1 = Q.
+
+Suppose x0 and x1 are both 0, then b > d is false iff U[i] < U[j]
+
+but if x0 + D[i] > U[j] where x0 is 0, 
+then D[i] > U[j] 
+and as U[i] > D[i], 
+U[i] > U[j]
+
+Suppose x0 is 0 and x1 is >0
+then it means U[i] > Q and U[j] + x1 = Q
+so U[i] + x0 > U[j] + x1
+
+Suppose x1 is 0 and x0 > 0
+then it means U[j] > Q and U[i] + x0 = Q
+
+but x0 + D[i] > U[j]
+x0 + U[i] + D[i] > U[j] + U[i]
+Q + D[i] > U[j] + U[i]
+
+but as U[i] > D[i], if U[j] > Q then the above inequality cannot be true (but it is true) so x1 cannot be 0 when x0 > 0.
+ 
+It is proved that even if b > a, X > Y.
+
+Thus X is always >(=) Y.
+And it is optimal to all send cows with U < D before a cow with U > D.

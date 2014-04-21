@@ -1,0 +1,20 @@
+> When we need to print the lexicographically earliest string then never do DP from left to right because the final value will be determined by the value at the last position, which we cannot use to determine the lexicographic order of the string. **************************
+
+> If a new sequence is formed somewhere, observe it. Difference Array!!
+
+> Binary search: DON'T FORGET ME!!!
+
+RANDOM SOLUTIONS
+
+1.   Finding all pairs of points in an undirected unweighted graph such that we can reach to common point from those two points by traveling the same number of edges. 
+
+(Assuming graph is connected, if not then we can divide it into connected components and solve for each of them.)
+
+We do a bfs from an arbitrary vertex 's' and store the distances D from s. When we encounter a vertex that has already been visited through and edge u->v, we check if D[u] + D[v] is even, if yes then adding that edge created an odd cycle which means all pairs of vertices in the component  satisfy the above requirement. Otherwise we can pair up points whose distance from the source is of the same parity.
+
+
+2. Finding the number of 3-tuples of points A,B,C such that B lies in the rectangle with corners A,C.
+
+Instead of taking every pair A,C and finding the number of points lying inside the rectangle, we can compute the number of rectangles surrounding every B using a segment tree.
+
+ 

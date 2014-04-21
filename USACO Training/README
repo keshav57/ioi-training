@@ -1,0 +1,9 @@
+All 'freopen' statements have been removed. USACO problems require the program to read and write to the specified files (problem-name.in and problem-name.out). These programs will read from stdin and stdout.
+
+The program 'Name That Number' (namenum) requires a file 'dict.txt' to be supplied in the same directory, as a dictionary. 
+
+The Program 'Longest Prefix' (prefix) requires input from  a file 'prefix.in' in the same directory, however the program will print to stdout.
+
+WARNING: Read 'Buy Low, Buy Lower' (buylow) code at your OWN RISK
+
+The Program 'Letter Game' (lettergame) requires a file 'lgame.dict' to be supplied in the same directory, as a dictionary and also requires the input to be from the file 'lgame.in', in the same directory. It will, however output to stdout. 

@@ -1,0 +1,59 @@
+All the cows having U < D should be sent in increasing order of U. So if there are two cows i,j such that U[i] > U[j] , by sending i before j, the time taken will be atleast as much as 
+the time taken while sending j before i.
+
+D[i] > U[i]
+D[j] > U[j]
+D[i] > U[i] > U[j]
+
+If the order is i,j
+k is the cow that goes before i.
+rD[x] = the time when cow labeled x reached down, rU[x] = the time when cow labeled x reached up.
+U[x] is the time x takes to climb the mountain and D[x] is the time x takes to descend the mountain
+
+Q = rD[k]-rU[k]
+
+x0 = max(0,Q-U[i])
+x1 = max(0,Q-U[j])
+
+
+rU[i] = rU[k] + U[i]
+rD[i] = rU[k] + U[i] + x0 + D[i]
+rU[j] = rU[k] + U[i] + U[j]
+
+rD[j] = X = max(rU[j]+D[j],rD[i]+D[j])
+= max (
+	rU[k] + U[i] + U[j] + D[j], 
+	rU[k] + U[i] + x0 + D[i] + D[j]
+)
+
+But as D[i] > U[j], D[i] + x0 > U[j]
+X = rD[i] + D[j] = rU[k] + U[i] + x0 + D[i] + D[j]
+
+Similarly if the order is j,i
+
+rD[i] = Y = max(rU[i]+D[i],rD[j]+D[i])
+= max (
+	rU[k] + U[j] + U[i] + D[i],		(c)
+	rU[k] + U[j] + x1 + D[j] + D[i]		(d)
+)
+
+It is sufficient to prove that X >(=) Y or (X > c and X > d)
+____________________________________________
+
+X > c if D[j] + x0 > U[j]
+But as D[j] > U[j] and x0 >= 0, D[j] + x0 > U[j].
+______________________________________________
+
+X > d if U[i] + x0 >(=) U[j] + x1.
+
+If x0 and x1 are both >0 then, U[i]+ x0 = U[j] + x1 = Q
+
+If x0 and x1 are both 0 then, because U[i] > U[j], U[i] + x0 > U[j] + x1.
+
+If only x0 is 0, then U[i] > Q and U[j] + x1 = Q,
+so U[i] > U[j] + x1.
+
+If only x1 is 0, this is not possible because it means U[j] > Q and U[i] < Q,
+but because U[i] > U[j], x1 cannot be zero if x0 > 0.
+
+X > c and X > d so X >(=) Y.
