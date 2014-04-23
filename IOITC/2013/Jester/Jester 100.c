@@ -30,10 +30,10 @@ void init(){
 	int i,j;
 
 	for(j = 0; j <= MAXM; ++j)	F[0][j] = 1;
-	//	G of everything will be 0, because g[i][j] = ( f[i-k][j] for all k < i ), which won't run when i equals 0.
+	//	G everything will be 0, because g[i][j] = ( f[i-k][j] for all k < i ), which won't run when i equals 0.
 
 	for(i = 1; i <= MAXN; ++i)	F[i][0] = 0;
-	// Even here G of everything will be 0, because g[0][0] = 0.
+	// Even here G everything will be 0, because g[0][0] = 0.
 
 	for(i = 1; i <= MAXN; ++i){
 		for(j = 1; j <= MAXM; ++j){
