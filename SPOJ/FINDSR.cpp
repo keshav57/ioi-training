@@ -1,7 +1,7 @@
 /*
  Created By: Malvika Josh
- Problem: Period
- Link: http://www.spoj.com/problems/PERIOD/
+ Problem: Find String Roots
+ Link: http://www.spoj.com/problems/FINDSR/
 */
 
 #include <algorithm>
