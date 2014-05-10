@@ -1,5 +1,6 @@
 /*
  Problem: Power Plant (Regionals 2013: Asia-Jakarta)
+ Link: https://icpcarchive.ecs.baylor.edu/index.php?option=com_onlinejudge&Itemid=8&category=596&page=show_problem&problem=4448
 */
 
 #include <algorithm>
