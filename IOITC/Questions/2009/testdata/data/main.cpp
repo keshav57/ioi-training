@@ -5,14 +5,23 @@
 #include <cassert>
 
 #define NMAX 610
-#define PI 3.14159265
 
 using namespace std;
 
 struct point{
 	int x,y;
 	bool operator< (const point &rhs)const {
+		if(!rhs.y) return 0;
+		if(!y) return 1;
 		return (1LL*y*rhs.x) < (1LL*x*rhs.y);
+	}
+	bool operator== (const point &rhs)const {
+		if(!rhs.y && !y) return 1;
+		if(!rhs.y || !y) return 0;
+		return (1LL*y*rhs.x) == (1LL*x*rhs.y);
+	}
+	bool operator> (const point &rhs)const {
+		return rhs < *this;
 	}
 };
 
@@ -27,15 +36,19 @@ point st[NMAX];
 point en[NMAX];
 int N;
 
-int init(point origin, int exc){
+int init(point origin){
 	int inc,i;
 
 	S = 0;
 	inc = 0;
 	for(i = 0; i < N; ++i){
-		if(i == exc) continue;
 		st[i].x -= origin.x, st[i].y -= origin.y;
 		en[i].x -= origin.x, en[i].y -= origin.y;
+
+		if(!(st[i].x||st[i].y) || !(en[i].x||en[i].y)){
+			++inc;
+			continue;
+		}
 
 		if(cross(st[i],en[i]) < 0){
 			swap(st[i],en[i]);
@@ -44,7 +57,7 @@ int init(point origin, int exc){
 		sp[S++] = make_pair(st[i],-1);
 		sp[S++] = make_pair(en[i],1);
 
-		if(st[i].y && (!en[i].y  || (st[i].y < 0) != (en[i].y < 0))){
+		if(st[i].y && ((!en[i].y)  || (st[i].y < 0) != (en[i].y < 0))){
 			++inc;
 		}
 	}
@@ -58,7 +71,6 @@ int init(point origin, int exc){
 	sort(sp,sp+S);
 
 	for(i = 0; i < N; ++i){
-		if(i == exc) continue;
 		st[i].x += origin.x, st[i].y += origin.y;
 		en[i].x += origin.x, en[i].y += origin.y;
 	}
@@ -72,9 +84,9 @@ int sweep(int start){
 	max_ins = start;
 	ins = start;
 
-	for(i = S; i < N; ++i){
+	for(i = 0; i < S; ++i){
 		ins -= sp[i].second;
-		if(i < N-1 && sp[i+1] <= sp[i]) continue;
+		if(i < S-1 && sp[i+1] == sp[i]) continue;
 		max_ins = max(max_ins,ins);
 	}
 
@@ -86,8 +98,8 @@ int compute(){
 
 	max_ins = 0;
 	for(i = 0; i < N; ++i){
-		max_ins = max(max_ins,1+sweep(init(st[i],i)));
-		max_ins = max(max_ins,1+sweep(init(en[i],i)));
+		max_ins = max(max_ins,sweep(init(st[i])));
+		max_ins = max(max_ins,sweep(init(en[i])));
 	}
 
 	return max_ins;
