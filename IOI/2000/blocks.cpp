@@ -121,12 +121,12 @@ int D;
 map<long long, int> vis;
 int M;
 
-long long next[1000000];
-int next_typ[1000000];
-int bl[1000000];
+long long next[70000];
+int next_typ[70000];
+int bl[70000];
 
 int dfs(int i){
-	if(M >= 1000000) return N;
+	if(M >= 70000) return N;
 
 	int k,j,cur;
 	map<long long , int>::iterator it;
@@ -189,7 +189,7 @@ int main(){
 	cube c;
 
 	memset(id,-1,sizeof(id));
-	FILE *r = fopen("TYPES.IN","r");
+	FILE *r = stdin;//fopen("TYPES.IN","r");
 
 	for(i = 0; i < TYP; ++i){
 		fscanf(r,"%d%d",&t,&sz);
