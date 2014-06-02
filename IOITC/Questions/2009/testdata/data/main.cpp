@@ -45,9 +45,11 @@ int init(point origin){
 		st[i].x -= origin.x, st[i].y -= origin.y;
 		en[i].x -= origin.x, en[i].y -= origin.y;
 
-		if(!(st[i].x||st[i].y) || !(en[i].x||en[i].y)){
-			++inc;
-			continue;
+		if(!cross(st[i],en[i])){
+			if((!en[i].y || !st[i].y)  || (st[i].y < 0) != (en[i].y < 0)){
+				++inc;
+				continue;
+			}
 		}
 
 		if(cross(st[i],en[i]) < 0){

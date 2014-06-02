@@ -66,7 +66,7 @@ int init(point origin){
 		if(sp[i].first.y >= 0) continue;
 		sp[i].first.y = -sp[i].first.y;
 		sp[i].first.x = -sp[i].first.x;
-	}
+// 	}
 
 	sort(sp,sp+S);
 

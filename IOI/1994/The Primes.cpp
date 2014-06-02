@@ -280,9 +280,6 @@ int main(){
 
 	int i;
 
-	freopen("prime3.in","r",stdin);
-	freopen("prime3.out","w",stdout);
-
 	ios::sync_with_stdio(false);
 
 	cin >> sum >> mat[0][0];
