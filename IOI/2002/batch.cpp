@@ -28,7 +28,7 @@ private:
 
 public:
 
-	void init(){
+	convex_hull(){
 		S = 0;
 		ptr = 0;
 	}
@@ -89,9 +89,7 @@ int main(){
 		pref_cost[i] += i ? pref_cost[i-1] : 0;
 	}
 	for(i = N-2; i >= 0; --i) suff_cost[i] += suff_cost[i+1];
-
-	C.init();
-
+	
 	printf("%d\n",compute());
 
 	return 0;
