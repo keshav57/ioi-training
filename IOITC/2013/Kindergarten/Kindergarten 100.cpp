@@ -1,16 +1,3 @@
-/*
- Created By: Malvika Joshi
- Problem: Kindergarten (IOITC-2013 Final 2)
-
- When we are given the configuration of the seating arrangement and want to find out how many ways there are to obtain it, we try all
- the places to seat the current child and find out how many ways were there to obtain the arrangement the child sat. This is the same
- idea used in the algorithm for the previous subtasks but its not necessary that the configuration should be of the form which tells us
- exactly which seats are taken. Observe that if we are given the sizes of the groups of the children, it does not matter in what order
- they appear, the number of ways to obtain the will be the same for any permutation of those sizes. Because it does not matter where we
- want to seat the current child, the sizes obtained before seating it will be the same (permutations of each other). Thus this can save
- a lot of recomputation. 
- There are only 28629 possibilities for this set of sizes so we can use recursion and memoization.
-*/
 
 #include <cstdio>
 #include <vector>
@@ -23,9 +10,8 @@
 using namespace std;
 
 void sort(vector<int> &A){
-	/*As only maximum two elements in the array will be misplaced
-	and the array size is also very small, we use Insertion Sort*/
-	int i,j,key;
+
+    int i,j,key;
 
 	for(i = 1; i < (int)A.size(); ++i){
 		j = i;

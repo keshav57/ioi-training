@@ -1,11 +1,11 @@
 /*
- Created By: Malvika Joshi
- Problem: Query on a Tree
- Link: http://www.spoj.com/problems/QTREE/
+ * Given a node, to which chain does that node belong to.
+ * Given a node, what is the position of that node in its chain. 
+ * Given a chain, what is the head of the chain
+ * Given a chain, what is the length of the chain
+ * QTREE1- HLD
+ * http://www.spoj.com/problems/QTREE1/
 */
-
-
-//Heavy Light Decomposition
 
 #include <algorithm>
 #include <cstdio>
