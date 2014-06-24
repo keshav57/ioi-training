@@ -1,0 +1,215 @@
+[SUBTASK 1]
+
+left
+
+cell1:
+right
+right
+pebble pick1
+halt
+
+pick1:
+get
+move
+jump cell2
+
+cell2:
+left
+left
+pebble pick2
+halt
+
+pick2:
+get
+move
+jump cell1
+
+[SUBTASK 2]
+
+cell1:
+right
+right
+pebble pick1
+move
+jump back1
+
+pick1:
+get
+move
+put
+left
+move
+left
+move
+jump cell2
+
+back1:
+pebble rev1
+left
+left
+move
+halt
+
+rev1:
+get
+left
+left
+move
+put
+right
+move
+right
+move
+jump back2
+
+cell2:
+right
+right
+pebble pick2
+right
+move
+put
+left
+move
+get
+left
+move
+left
+move
+right
+right
+move
+jump back2
+
+pick2:
+get
+move
+put
+right
+move
+right
+move
+jump cell1
+
+back2:
+pebble rev2
+left
+left
+move
+halt
+
+rev2:
+get
+left
+left
+move
+put
+left
+move
+left
+move
+jump back1
+
+[SUBTASK 3]
+
+right
+forw:
+pebble start
+move
+jump forw
+
+start:
+left
+left
+jump start1
+
+start1:
+right
+right
+get
+move
+put
+next:
+move
+pebble start2
+jump next
+
+start2:
+left
+left
+get
+move
+pebble end
+put
+prev:
+move
+pebble start1
+jump prev
+
+
+end:
+halt
+
+[SUBTASK 4]
+
+right
+
+horizontal_collect:
+move
+border do_reverse
+jump horizontal_collect
+
+do_reverse:
+left
+left
+jump reverse
+
+reverse:
+border go_down
+pebble put_back
+move
+jump reverse
+
+put_back:
+get
+move
+put
+left
+left
+move
+left
+left
+jump reverse
+
+go_down:
+left
+border go_up
+move
+left
+jump horizontal_collect
+
+go_up:
+left
+left
+jump move_up
+
+move_up:
+border stop
+pebble put_up
+move
+jump move_up
+
+stop:
+halt
+
+put_up:
+get
+move
+put
+left
+left
+move
+left
+left
+jump move_up
+
