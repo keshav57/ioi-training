@@ -4,6 +4,8 @@
  * Given a chain, what is the head of the chain
  * Given a chain, what is the length of the chain
  * QTREE1- HLD
+ * 
+ * Special Child (heavy) - extend the chain, all chains end at leaves create new chains for other children
  * http://www.spoj.com/problems/QTREE1/
 */
 
