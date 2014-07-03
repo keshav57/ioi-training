@@ -151,65 +151,861 @@ end:
 halt
 
 [SUBTASK 4]
-
 right
+jump ccollect_col
 
-horizontal_collect:
+start:
+right
+border real_start
+jump move_right
+
+move_right:
+border ccollect_col
 move
-border do_reverse
-jump horizontal_collect
+jump move_right
 
-do_reverse:
-left
-left
-jump reverse
-
-reverse:
-border go_down
-pebble put_back
+ccollect_col:
+right
 move
-jump reverse
+jump collect_col
 
-put_back:
+collect_col:
+pebble col_found
+border mark_up
+move
+jump collect_col
+
+col_found:
 get
+left
+left
 move
+jump move_col
+
+move_col:
+border drop_col
+move
+jump move_col
+
+drop_col:
 put
 left
 left
 move
-left
-left
-jump reverse
+jump collect_col
 
-go_down:
+mark_up:
 left
-border go_up
+left
+jump mark
+
+
+mark:
+border start
+put
+move
+jump mark
+
+real_start:
+right
+move
+right
+jump left_collect
+
+right_collect:
+move
+pebble rfound
+move
+pebble rfound
+move
+pebble rfound
+move
+pebble rfound
+move
+pebble rfound
+pebble rfound
+move
+pebble rfound
+move
+pebble rfound
+move
+pebble rfound
+move
+pebble rfound
+jump right_collect
+
+rfound:
+border rgo_down
+left
+jump rmove_pebble
+
+rmove_pebble:
+border rdrop
+move
+jump rmove_pebble
+
+rdrop:
+put
+left
+left
+move
+jump rgo_back
+
+rgo_back:
+pebble rcontinue
+move
+jump rgo_back
+
+rcontinue:
+left
+get
+jump right_collect
+
+rgo_down:
+right
+border top
+move
+right
+#jump left_collect
+
+left_collect:
+move
+pebble lfound
+move
+pebble lfound
+move
+pebble lfound
+move
+pebble lfound
+move
+pebble lfound
+move
+pebble lfound
+move
+pebble lfound
+move
+pebble lfound
+move
+pebble lfound
+move
+pebble lfound
+jump left_collect
+
+lfound:
+border lgo_down
+right
+jump lmove_pebble
+
+
+lmove_pebble:
+border ldrop
+move
+jump lmove_pebble
+
+ldrop:
+put
+left
+left
+move
+jump lgo_back
+
+lgo_back:
+pebble lcontinue
+move
+jump lgo_back
+
+lcontinue:
+right
+get
+jump left_collect
+
+lgo_down:
+left
+border top
 move
 left
-jump horizontal_collect
+jump right_collect
 
-go_up:
-left
-left
-jump move_up
+top:
+right
+jump move_left
+
+move_left:
+border move_up
+move
+jump move_left
 
 move_up:
-border stop
-pebble put_up
+right
+jump go_up
+
+go_up:
+border done
 move
-jump move_up
+jump go_up
+
+done:
+right
+jump collect_row
+
+collect_row:
+pebble turn_back
+border clear
+move
+jump collect_row
+
+turn_back:
+get
+left
+left
+jump drop_back
+
+drop_back:
+border final_drop
+move
+jump drop_back
+
+final_drop:
+put
+left
+left
+move
+jump collect_row
+
+clear:
+right
+jump clear_col
+
+clear_col:
+move
+get
+border go_left
+jump clear_col
+
+go_left:
+right
+jump lmove_left
+
+lmove_left:
+border clear_up
+move
+jump lmove_left
+
+clear_up:
+right
+jump cclear_up
+
+cclear_up:
+border stop
+get
+move
+jump cclear_up
 
 stop:
 halt
 
-put_up:
-get
-move
-put
-left
-left
-move
-left
-left
-jump move_up
+[SUBTASK 5]
 
+jump min0
+start0:
+right
+min0:
+right
+jump move_right0
+
+found0:
+border down0
+move
+move_right0:
+pebble found0
+jump add0
+
+down0:
+right
+border min1
+move
+go_back0:
+right
+back0:
+border start0
+move
+jump back0
+
+start1:
+right
+min1:
+right
+jump move_right1
+
+found1:
+put
+border down1
+move
+move_right1:
+get
+pebble found1
+jump add1
+
+down1:
+right
+border min2
+move
+go_back1:
+right
+back1:
+border start1
+move
+jump back1
+
+start2:
+right
+min2:
+right
+jump move_right2
+
+found2:
+put
+put
+border down2
+move
+move_right2:
+get
+get
+pebble found2
+jump add2
+
+down2:
+right
+border min3
+move
+go_back2:
+right
+back2:
+border start2
+move
+jump back2
+
+start3:
+right
+min3:
+right
+jump move_right3
+
+found3:
+put
+put
+put
+border down3
+move
+move_right3:
+get
+get
+get
+pebble found3
+jump add3
+
+down3:
+right
+border min4
+move
+go_back3:
+right
+back3:
+border start3
+move
+jump back3
+
+start4:
+right
+min4:
+right
+jump move_right4
+
+found4:
+put
+put
+put
+put
+border down4
+move
+move_right4:
+get
+get
+get
+get
+pebble found4
+jump add4
+
+down4:
+right
+border min5
+move
+go_back4:
+right
+back4:
+border start4
+move
+jump back4
+
+start5:
+right
+min5:
+right
+jump move_right5
+
+found5:
+put
+put
+put
+put
+put
+border down5
+move
+move_right5:
+get
+get
+get
+get
+get
+pebble found5
+jump add5
+
+down5:
+right
+border min6
+move
+go_back5:
+right
+back5:
+border start5
+move
+jump back5
+
+start6:
+right
+min6:
+right
+jump move_right6
+
+found6:
+put
+put
+put
+put
+put
+put
+border down6
+move
+move_right6:
+get
+get
+get
+get
+get
+get
+pebble found6
+jump add6
+
+down6:
+right
+border min7
+move
+go_back6:
+right
+back6:
+border start6
+move
+jump back6
+
+start7:
+right
+min7:
+right
+jump move_right7
+
+found7:
+put
+put
+put
+put
+put
+put
+put
+border down7
+move
+move_right7:
+get
+get
+get
+get
+get
+get
+get
+pebble found7
+jump add7
+
+down7:
+right
+border min8
+move
+go_back7:
+right
+back7:
+border start7
+move
+jump back7
+
+start8:
+right
+min8:
+right
+jump move_right8
+
+found8:
+put
+put
+put
+put
+put
+put
+put
+put
+border down8
+move
+move_right8:
+get
+get
+get
+get
+get
+get
+get
+get
+pebble found8
+jump add8
+
+down8:
+right
+border min9
+move
+go_back8:
+right
+back8:
+border start8
+move
+jump back8
+
+start9:
+right
+min9:
+right
+jump move_right9
+
+found9:
+put
+put
+put
+put
+put
+put
+put
+put
+put
+border down9
+move
+move_right9:
+get
+get
+get
+get
+get
+get
+get
+get
+get
+pebble found9
+jump add9
+
+down9:
+right
+border min10
+move
+go_back9:
+right
+back9:
+border start9
+move
+jump back9
+
+start10:
+right
+min10:
+right
+jump move_right10
+
+found10:
+put
+put
+put
+put
+put
+put
+put
+put
+put
+put
+border down10
+move
+move_right10:
+get
+get
+get
+get
+get
+get
+get
+get
+get
+get
+pebble found10
+jump add10
+
+down10:
+right
+border min11
+move
+go_back10:
+right
+back10:
+border start10
+move
+jump back10
+
+start11:
+right
+min11:
+right
+jump move_right11
+
+found11:
+put
+put
+put
+put
+put
+put
+put
+put
+put
+put
+put
+border down11
+move
+move_right11:
+get
+get
+get
+get
+get
+get
+get
+get
+get
+get
+get
+pebble found11
+jump add11
+
+down11:
+right
+border min12
+move
+go_back11:
+right
+back11:
+border start11
+move
+jump back11
+
+start12:
+right
+min12:
+right
+jump move_right12
+
+found12:
+put
+put
+put
+put
+put
+put
+put
+put
+put
+put
+put
+put
+border down12
+move
+move_right12:
+get
+get
+get
+get
+get
+get
+get
+get
+get
+get
+get
+get
+pebble found12
+jump add12
+
+down12:
+right
+border min13
+move
+go_back12:
+right
+back12:
+border start12
+move
+jump back12
+
+start13:
+right
+min13:
+right
+jump move_right13
+
+found13:
+put
+put
+put
+put
+put
+put
+put
+put
+put
+put
+put
+put
+put
+border down13
+move
+move_right13:
+get
+get
+get
+get
+get
+get
+get
+get
+get
+get
+get
+get
+get
+pebble found13
+jump add13
+
+down13:
+right
+border min14
+move
+go_back13:
+right
+back13:
+border start13
+move
+jump back13
+
+start14:
+right
+min14:
+right
+jump move_right14
+
+found14:
+put
+put
+put
+put
+put
+put
+put
+put
+put
+put
+put
+put
+put
+put
+border down14
+move
+move_right14:
+get
+get
+get
+get
+get
+get
+get
+get
+get
+get
+get
+get
+get
+get
+pebble found14
+jump add14
+
+down14:
+right
+border min15
+move
+go_back14:
+right
+back14:
+border start14
+move
+jump back14
+
+
+add14:
+put
+add13:
+put
+add12:
+put
+add11:
+put
+add10:
+put
+add9:
+put
+add8:
+put
+add7:
+put
+add6:
+put
+add5:
+put
+add4:
+put
+add3:
+put
+add2:
+put
+add1:
+put
+add0:
+
+min15:
