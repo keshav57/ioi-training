@@ -94,3 +94,16 @@ int main(){
 
 	return 0;
 }
+
+/*
+ 
+ 
+ 
+ 
+or a point k which is closet to H1 than i, 
+x = dist(H1,k)	
+y = dist(H2,k)+dist(H1,H2)
+I connect k to H1 if x < y, otherwise I connect it to H2.
+
+ 
+ */
