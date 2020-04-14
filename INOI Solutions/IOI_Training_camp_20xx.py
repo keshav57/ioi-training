@@ -1,30 +1,33 @@
-#Python solution that passes all the test cases
-
-
 def sumsub(ls,k):
 
-if k==0:
+ if k==0:
 
-return(sum(ls))
-else:
+   return(sum(ls))
 
-ls.sort()
+ else:
 
-if len(ls)>=k:
+   ls.sort()
 
-    for j in range(0,k):
+   if len(ls)>=k:
 
-        if(ls[0]<0):
+       for j in range(0,k):
 
-             ls.remove(ls[0])
+           if(ls[0]<0):
 
-    return(sum(ls))
-else:
+               ls.remove(ls[0])
 
-      for i in range(len(ls)):
-          if ls[0]<0:
-              ls.remove(ls[0])
-      return(sum(ls))
+       return(sum(ls))
+
+   else:
+
+       for i in range(len(ls)):
+
+           if ls[0]<0:
+
+               ls.remove(ls[0])
+
+       return(sum(ls))
+
 n,k= map(int,input().split(" "))
 
 l=[]
@@ -33,17 +36,18 @@ smax=0
 
 for i in range(n):
 
-m=input()
+ m=input()
 
-l.append(int(m))
+ l.append(int(m))
 
 for i in range(n):
 
-for j in range(n,0,-1):
+ for j in range(n,0,-1):
 
-s=sumsub(l[i:j],k)
+     s=sumsub(l[i:j],k)
 
-if s>smax :
+     if s>smax :
 
-    smax=s
+         smax=s
+
 print(smax)
